@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<LangVersion>latest</LangVersion>
+		<Nullable>disable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
+		<RuntimeIdentifiers>win;win-x64;win-x86</RuntimeIdentifiers>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+		<RunAnalyzers>false</RunAnalyzers>
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<PublishTrimmed>true</PublishTrimmed>
+		<Version>1.0.0</Version>
+		<FileVersion>1.0.0</FileVersion>
+		<Product>KLYDBMS.Application</Product>
+		<Copyright>Anonymous.FreezeBeautiful.20151106</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Assets\login-background.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\KLYDBMS.Application.Core\KLYDBMS.Application.Core.csproj" />
+		<ProjectReference Include="..\KLYDBMS.Icons.Avalonia.MMaterialDesign\KLYDBMS.Icons.Avalonia.MMaterialDesign.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Views\WorkspaceView.axaml.cs">
+			<DependentUpon>WorkspaceView.axaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+</Project>

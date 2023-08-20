@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+		<PackageReference Include="ReactiveUI.Validation" Version="3.1.7" />
+		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+		<PackageReference Include="ReactiveUI.Fody" Version="19.4.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\KLYDBMS.Application.Core.Data\KLYDBMS.Application.Core.Data.csproj" />
+		<ProjectReference Include="..\KLYDBMS.Utilities\KLYDBMS.Utilities.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\Materials\" />
+	  <Folder Include="Models\SysLogs\" />
+	</ItemGroup>
+
+</Project>

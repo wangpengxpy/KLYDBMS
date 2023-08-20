@@ -1,0 +1,87 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+             xmlns:local="clr-namespace:KLYDBMS.Application.Animations;assembly=KLYDBMS.Application"
+			 xmlns:vm="clr-namespace:KLYDBMS.Application.Core.ViewModels;assembly=KLYDBMS.Application.Core"
+			 xmlns:views="clr-namespace:KLYDBMS.Application.Views;assembly=KLYDBMS.Application"
+			 x:Class="KLYDBMS.Application.Views.WorkspaceView"
+			 xmlns:model="clr-namespace:KLYDBMS.Models;assembly=KLYDBMS.Application.Core"
+             x:DataType="model:Menu">
+
+	<UserControl.Styles>
+		<Style Selector="Expander[ExpandDirection=Down]">
+			<Setter Property="ContentTransition">
+				<Setter.Value>
+					<PageSlide Duration="00:00:00.20" />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Border Background="#CF7E06"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="0"
+							CornerRadius="0">
+						<Grid RowDefinitions="60,*">
+							<ToggleButton IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Stretch"></ToggleButton>
+							<ContentPresenter Name="PART_ContentPresenter"
+											  Grid.Row="1"
+											  Padding="{TemplateBinding Padding}"
+											  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+											  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+											  Content="{TemplateBinding Content}"
+											  ContentTemplate="{TemplateBinding ContentTemplate}"
+											  IsVisible="{TemplateBinding IsExpanded}" />
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</UserControl.Styles>
+
+	<StackPanel Orientation="Vertical">
+		<DockPanel>
+			<Border DockPanel.Dock="Left" Width="300" BorderThickness="0">
+				<ListBox Background="#CF7E06" ItemsSource="{Binding Menus}" Grid.Row="1"
+				 BorderBrush="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+				 ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="model:Menu">
+							<Expander IsExpanded="True" BorderThickness="0"  Padding="0" Width="{Binding $parent[ListBox].Width}">
+								<Expander.Header>
+									<TextBlock FontSize="16" Foreground="White" Text="{Binding Name}"></TextBlock>
+								</Expander.Header>
+								<ListBox Width="260" Background="#CF7E06" BorderThickness="0" ItemsSource="{Binding Children}">
+									<ListBox.ItemTemplate>
+										<DataTemplate DataType="model:Menu">
+											<Border BorderThickness="0" Padding="4">
+												<Grid Width="{Binding $parent[ListBox].Width}">
+													<StackPanel>
+														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" Text="{Binding Id}"></TextBlock>
+														<TextBlock Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
+													</StackPanel>
+												</Grid>
+											</Border>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
+								</ListBox>
+							</Expander>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Border>
+			<Border DockPanel.Dock="Right" Width="500" Height="450" BorderThickness="0">
+				<rxui:RoutedViewHost Name="WorkspaceRoutedViewHost" Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static local:Transitions.Fade}">
+					<rxui:RoutedViewHost.DefaultContent>
+						<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+							<ProgressBar IsIndeterminate="True" IsVisible="True"/>
+							<TextBlock Text="HelloWorld"></TextBlock>
+						</StackPanel>
+					</rxui:RoutedViewHost.DefaultContent>
+				</rxui:RoutedViewHost>
+			</Border>
+		</DockPanel>
+	</StackPanel>
+</UserControl>

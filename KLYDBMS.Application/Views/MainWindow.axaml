@@ -1,0 +1,25 @@
+<Window
+		xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		WindowStartupLocation="CenterScreen"
+		CanResize="False"
+		xmlns:local="clr-namespace:KLYDBMS.Application.Animations;assembly=KLYDBMS.Application"
+		xmlns:vm="clr-namespace:KLYDBMS.Application.Core.ViewModels;assembly=KLYDBMS.Application.Core"
+		xmlns:views="clr-namespace:KLYDBMS.Application.Views;assembly=KLYDBMS.Application"
+		x:Class="KLYDBMS.Application.Views.MainWindow"
+        Icon="/Assets/ybb-logo.ico"
+        Title="统一存储平台">
+
+	<rxui:RoutedViewHost Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static local:Transitions.Fade}">
+		<rxui:RoutedViewHost.DefaultContent>
+			<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+				<ProgressBar IsIndeterminate="True" IsVisible="{Binding Loading}"/>
+			</StackPanel>
+		</rxui:RoutedViewHost.DefaultContent>
+	</rxui:RoutedViewHost>
+
+</Window>

@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLYDBMS.Application", "KLYDBMS.Application\KLYDBMS.Application.csproj", "{E208B80E-A3BF-40B0-9780-D86FC143BF79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLYDBMS.Utilities", "KLYDBMS.Utilities\KLYDBMS.Utilities.csproj", "{72AB1F46-58AB-4182-9732-190ECEA8E9B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLYDBMS.Application.Core.Data", "KLYDBMS.Application.Core.Data\KLYDBMS.Application.Core.Data.csproj", "{4403EDB1-1CE4-4D6D-B14F-75AEDFDC5F24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLYDBMS.Icons.Avalonia.MMaterialDesign", "KLYDBMS.Icons.Avalonia.MMaterialDesign\KLYDBMS.Icons.Avalonia.MMaterialDesign.csproj", "{02076E10-64A3-4E5F-915C-C3553C30DF6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KLYDBMS.Application.Core", "KLYDBMS.Application.Core\KLYDBMS.Application.Core.csproj", "{03C3E3E6-4DB5-4963-93C5-48ABFAED7DA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E208B80E-A3BF-40B0-9780-D86FC143BF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E208B80E-A3BF-40B0-9780-D86FC143BF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E208B80E-A3BF-40B0-9780-D86FC143BF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E208B80E-A3BF-40B0-9780-D86FC143BF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72AB1F46-58AB-4182-9732-190ECEA8E9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72AB1F46-58AB-4182-9732-190ECEA8E9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72AB1F46-58AB-4182-9732-190ECEA8E9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72AB1F46-58AB-4182-9732-190ECEA8E9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4403EDB1-1CE4-4D6D-B14F-75AEDFDC5F24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4403EDB1-1CE4-4D6D-B14F-75AEDFDC5F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4403EDB1-1CE4-4D6D-B14F-75AEDFDC5F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4403EDB1-1CE4-4D6D-B14F-75AEDFDC5F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02076E10-64A3-4E5F-915C-C3553C30DF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02076E10-64A3-4E5F-915C-C3553C30DF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02076E10-64A3-4E5F-915C-C3553C30DF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02076E10-64A3-4E5F-915C-C3553C30DF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03C3E3E6-4DB5-4963-93C5-48ABFAED7DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03C3E3E6-4DB5-4963-93C5-48ABFAED7DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03C3E3E6-4DB5-4963-93C5-48ABFAED7DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03C3E3E6-4DB5-4963-93C5-48ABFAED7DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7ACCC4B7-60CE-4D6D-930A-33773690373B}
+	EndGlobalSection
+EndGlobal

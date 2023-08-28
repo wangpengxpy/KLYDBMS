@@ -13,6 +13,9 @@ namespace KLYDBMS.Application.Core.Data
         [Key]
         public int Id { get; set; }
         public int? ParentId { get; set; }
+        /// <summary>
+        /// 菜单名称
+        /// </summary>
         [Column("MenuName")]
         [Required]
         [StringLength(20)]
@@ -21,9 +24,11 @@ namespace KLYDBMS.Application.Core.Data
         /// 菜单编码
         /// </summary>
         [Column("MenuCode", TypeName = "varchar")]
-        [Required]
         [StringLength(50)]
         public string MenuCode { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         [Column("Remark")]
         public string Remark { get; set; }
         [Column("CreatedTime", TypeName = "datetime")]

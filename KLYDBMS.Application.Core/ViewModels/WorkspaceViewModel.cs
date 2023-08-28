@@ -1,59 +1,59 @@
 ﻿using KLYDBMS.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Splat;
+using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Concurrency;
 
 namespace KLYDBMS.Application.Core.ViewModels
 {
     public class WorkspaceViewModel : ViewModelBase, IScreen, IRoutableViewModel
     {
-        [Reactive] 
+        private readonly IMUserService _mUserService;
+        [Reactive]
         public ReactiveCommand<Unit, Unit> Logout { get; set; }
+
         public string UrlPathSegment => nameof(WorkspaceViewModel);
 
         public IScreen HostScreen { get; }
 
         public RoutingState Router { get; } = new RoutingState();
 
-        public WorkspaceViewModel(IScreen screen)
+        public ObservableCollection<UserMenuModel> Items { get; } = new();
+
+        public WorkspaceViewModel(IScreen hostScreen) :
+          this(hostScreen, Locator.Current.GetService<IMUserService>())
+        {
+
+        }
+
+        public WorkspaceViewModel(IScreen screen, IMUserService mUserService)
         {
             HostScreen = screen;
 
             Logout = ReactiveCommand.Create(() => { HostScreen.Router.NavigateAndReset.Execute(new LoginViewModel(HostScreen)); });
+
+            _mUserService = mUserService;
+
+            RxApp.MainThreadScheduler.Schedule(LoadUserMenus);
         }
 
-        public List<Menu> Menus { get; set; } = new List<Menu>
+        private async void LoadUserMenus()
         {
-            new Menu(){
-                Id = 1, Name = "资料管理",
-                Children = new List<Menu>()
-                {
-                    new Menu(){ Id = 1, Name = "View as slide show"},
-                    new Menu(){ Id = 2, Name = "View as slide show"},
-                    new Menu(){ Id = 3, Name = "View as slide show"},
-                    new Menu(){ Id = 4, Name = "View as slide show"}
-                }
-            },
-            new Menu(){
-                Id = 2, Name = "用户管理",
-                Children = new List<Menu>()
-                {
-                    new Menu(){ Id = 5, Name = "Order prints online5"},
-                    new Menu(){ Id = 6, Name = "Order prints online6"},
-                    new Menu(){ Id = 7, Name = "Order prints online7"},
-                    new Menu(){ Id = 8, Name = "Order prints online8"}
-                }
-            },
-            new Menu(){
-                Id = 3, Name = "菜单管理",
-                Children = new List<Menu>()
-                {
-                    new Menu(){ Id = 9, Name = "Copy all item to CD9"},
-                    new Menu(){ Id = 10, Name = "Copy all item to CD10"},
-                    new Menu(){ Id = 11, Name = "Copy all item to CD11"},
-                    new Menu(){ Id = 12, Name = "Copy all item to CD12"}
-                }
+            var result = await _mUserService.GetUserMenus(KLYMSSession.UserId);
+
+            if (result.Data == null)
+            {
+                return;
             }
-        };
+
+            var models = result.Data;
+
+            foreach (var model in models)
+            {
+                Items.Add(model);
+            }
+        }
     }
 }

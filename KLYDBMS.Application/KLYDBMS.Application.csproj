@@ -25,6 +25,10 @@
 
 	<ItemGroup>
 		<None Remove="Assets\login-background.png" />
+		<None Remove="Assets\material-manage.png" />
+		<None Remove="Assets\menu-manage.png" />
+		<None Remove="Assets\role-manage.png" />
+		<None Remove="Assets\user-manage.png" />
 	</ItemGroup>
 
 	<ItemGroup>

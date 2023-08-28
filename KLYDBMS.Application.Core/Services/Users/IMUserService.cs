@@ -10,6 +10,12 @@ namespace KLYDBMS.Application.Core
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        OperateResult<int> Login(UserModel model);
+        Task<OperateResult<int>> Login(UserModel model);
+        /// <summary>
+        /// 获取用户可操作菜单列表
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<OperateResult<List<UserMenuModel>>> GetUserMenus(int id);
     }
 }

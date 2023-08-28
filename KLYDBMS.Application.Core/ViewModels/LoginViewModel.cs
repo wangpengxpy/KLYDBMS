@@ -25,7 +25,7 @@ namespace KLYDBMS.Application.Core.ViewModels
 
         public LoginViewModel(IScreen screen) : this(screen, Locator.Current.GetService<IMUserService>())
         {
-            
+
         }
 
         public LoginViewModel(IScreen screen, IMUserService userService)
@@ -46,7 +46,7 @@ namespace KLYDBMS.Application.Core.ViewModels
 
         private async Task LoginAsync()
         {
-            var result = _userService.Login(new UserModel()
+            var result = await _userService.Login(new UserModel()
             {
                 UserName = UserName,
                 Password = Password

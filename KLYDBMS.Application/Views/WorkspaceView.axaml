@@ -3,15 +3,118 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:i="https://github.com/projektanker/icons.avalonia"
 			 xmlns:rxui="clr-namespace:Avalonia.ReactiveUI;assembly=Avalonia.ReactiveUI"
-             xmlns:local="clr-namespace:KLYDBMS.Application.Animations;assembly=KLYDBMS.Application"
+             xmlns:animation="clr-namespace:KLYDBMS.Application.Animations;assembly=KLYDBMS.Application"
+			 xmlns:converter="clr-namespace:KLYDBMS.Application.Converters;assembly=KLYDBMS.Application"
 			 xmlns:vm="clr-namespace:KLYDBMS.Application.Core.ViewModels;assembly=KLYDBMS.Application.Core"
 			 xmlns:views="clr-namespace:KLYDBMS.Application.Views;assembly=KLYDBMS.Application"
 			 x:Class="KLYDBMS.Application.Views.WorkspaceView"
 			 xmlns:model="clr-namespace:KLYDBMS.Models;assembly=KLYDBMS.Application.Core"
-             x:DataType="model:Menu">
+             x:DataType="model:UserMenuModel">
 
+	<UserControl.Resources>
+		<converter:ManagerTypeToImageConverter x:Key="ManagerTypeToImageConverter"/>
+	</UserControl.Resources>
 	<UserControl.Styles>
+		<!--菜单栏Expander ToggleButton按钮ICON样式-->
+		<Style>
+			<Style.Resources>
+				<StreamGeometry x:Key="minus">M19,13H5V11H19V13Z</StreamGeometry>
+				<StreamGeometry x:Key="plus">M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z</StreamGeometry>
+			</Style.Resources>
+		</Style>
+		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader PathIcon.plus-on">
+			<Setter Property="IsVisible" Value="True"/>
+			<Setter Property="Theme" Value="{x:Null}"/>
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader:checked PathIcon.plus-on">
+			<Setter Property="Theme" Value="{x:Null}"/>
+			<Setter Property="IsVisible" Value="False"/>
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader PathIcon.minus-on">
+			<Setter Property="Theme" Value="{x:Null}"/>
+			<Setter Property="IsVisible" Value="False"/>
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader:checked PathIcon.minus-on">
+			<Setter Property="Theme" Value="{x:Null}"/>
+			<Setter Property="IsVisible" Value="True"/>
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+
+		<Style Selector="Expander:up /template/ ToggleButton#ExpanderHeader">
+			<Setter Property="Theme" Value="{x:Null}" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"></Setter>
+			<Setter Property="Background" Value="Transparent"></Setter>
+		</Style>
+		<Style Selector="Expander:down /template/ ToggleButton#ExpanderHeader">
+			<Setter Property="Theme" Value="{x:Null}" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+
+		<!--ListBox单个Item背景样式-->
+		<Style Selector="ListBox:singleitem /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="{x:Null}"/>
+		</Style>
+		<!--ListBoxItem背景样式-->
+		<Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#CF7E06"/>
+			<Setter Property="Foreground" Value="#CF7E06"/>
+		</Style>
+		<!--ListBoxItem鼠标selected的颜色-->
+		<Style Selector="ListBoxItem:selected/template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#BB7205"/>
+			<Setter Property="Foreground" Value="#BB7205"/>
+		</Style>
+		<!--ListBoxItem鼠标pressed的颜色-->
+		<Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="#CF7E06" />
+			<Setter Property="Foreground" Value="#CF7E06" />
+		</Style>
+		<!--菜单栏ListBox的模板样式-->
+		<Style Selector="ListBoxItem">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<ContentPresenter Name="PART_ContentPresenter"
+									  Background="{TemplateBinding Background}"
+									  BorderBrush="{TemplateBinding BorderBrush}"
+									  BorderThickness="{TemplateBinding BorderThickness}"
+									  CornerRadius="{TemplateBinding CornerRadius}"
+									  ContentTemplate="{TemplateBinding ContentTemplate}"
+									  Content="{TemplateBinding Content}"
+									  FontWeight="Normal"
+									  FontSize="{DynamicResource ControlContentThemeFontSize}"
+									  Padding="{TemplateBinding Padding}"
+									  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+									  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+				</ControlTemplate>
+			</Setter>
+		</Style>
+		<!--菜单栏Expander的模板样式-->
 		<Style Selector="Expander[ExpandDirection=Down]">
 			<Setter Property="ContentTransition">
 				<Setter.Value>
@@ -21,11 +124,29 @@
 			<Setter Property="Template">
 				<ControlTemplate>
 					<Border Background="#CF7E06"
-							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderBrush="#C8990C"
 							BorderThickness="0"
 							CornerRadius="0">
 						<Grid RowDefinitions="60,*">
-							<ToggleButton IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}" HorizontalAlignment="Right" VerticalAlignment="Stretch"></ToggleButton>
+							<Border BorderBrush="WhiteSmoke" BorderThickness="0,0,0,1">
+								<Grid>
+									<WrapPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+										<Image Source="{Binding Code,Converter={StaticResource ManagerTypeToImageConverter}}"  Height="20" Stretch="Uniform"/>
+										<TextBlock Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{TemplateBinding Header}" Foreground="White"/>
+									</WrapPanel>
+									<Path VerticalAlignment="Center" HorizontalAlignment="Right" Stretch="Uniform" Width="20" Height="20"></Path>
+								</Grid>
+							</Border>
+							<ToggleButton Background="Transparent" BorderThickness="0" Name="ExpanderHeader"
+											IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
+											HorizontalAlignment="Right" VerticalAlignment="Center">
+								<Panel>
+									<PathIcon Classes="minus-on"
+											  Data="{StaticResource minus}" />
+									<PathIcon Classes="plus-on"
+											  Data="{StaticResource plus}" />
+								</Panel>
+							</ToggleButton>
 							<ContentPresenter Name="PART_ContentPresenter"
 											  Grid.Row="1"
 											  Padding="{TemplateBinding Padding}"
@@ -41,26 +162,26 @@
 		</Style>
 	</UserControl.Styles>
 
+	<!--页面整体数据展示-->
 	<StackPanel Orientation="Vertical">
 		<DockPanel>
-			<Border DockPanel.Dock="Left" Width="300" BorderThickness="0">
-				<ListBox Background="#CF7E06" ItemsSource="{Binding Menus}" Grid.Row="1"
-				 BorderBrush="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-				 ScrollViewer.VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+			<Border DockPanel.Dock="Left" Width="300" Height="600" BorderThickness="0">
+				<ListBox SelectionMode="Single" Width="260" Name="ParentMenu" Background="#BB7205" ItemsSource="{Binding Items}" Grid.Row="1"
+				 BorderBrush="Transparent" BorderThickness="0"
+				 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+				 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+				 HorizontalAlignment="Left" VerticalAlignment="Stretch">
 					<ListBox.ItemTemplate>
-						<DataTemplate DataType="model:Menu">
-							<Expander IsExpanded="True" BorderThickness="0"  Padding="0" Width="{Binding $parent[ListBox].Width}">
-								<Expander.Header>
-									<TextBlock FontSize="16" Foreground="White" Text="{Binding Name}"></TextBlock>
-								</Expander.Header>
-								<ListBox Width="260" Background="#CF7E06" BorderThickness="0" ItemsSource="{Binding Children}">
+						<DataTemplate DataType="model:UserMenuModel">
+							<Expander FontFamily="Microsoft Yahei" FontSize="16" Header="{Binding Name}" BorderThickness="0" Padding="0" Width="{Binding $parent[ListBox].Width}">
+								<ListBox SelectionMode="Single" Name="ChildMenu" Width="{Binding $parent[ListBox].Width}" BorderBrush="#CF7E06" Background="#CF7E06" BorderThickness="0" ItemsSource="{Binding Children}">
 									<ListBox.ItemTemplate>
-										<DataTemplate DataType="model:Menu">
-											<Border BorderThickness="0" Padding="4">
+										<DataTemplate DataType="model:UserMenuModel">
+											<Border BorderThickness="0,0,0,0" Padding="0">
 												<Grid Width="{Binding $parent[ListBox].Width}">
 													<StackPanel>
-														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" Text="{Binding Id}"></TextBlock>
-														<TextBlock Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
+														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" FontSize="16" Text="{Binding Id}"></TextBlock>
+														<TextBlock Cursor="Hand" FontFamily="SimSun" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
 													</StackPanel>
 												</Grid>
 											</Border>
@@ -73,10 +194,10 @@
 				</ListBox>
 			</Border>
 			<Border DockPanel.Dock="Right" Width="500" Height="450" BorderThickness="0">
-				<rxui:RoutedViewHost Name="WorkspaceRoutedViewHost" Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static local:Transitions.Fade}">
+				<rxui:RoutedViewHost Name="WorkspaceRoutedViewHost" Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static animation:Transitions.Fade}">
 					<rxui:RoutedViewHost.DefaultContent>
 						<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-							<ProgressBar IsIndeterminate="True" IsVisible="True"/>
+							<ProgressBar Foreground="OrangeRed" Background="Orange" IsIndeterminate="True" IsVisible="True"/>
 							<TextBlock Text="HelloWorld"></TextBlock>
 						</StackPanel>
 					</rxui:RoutedViewHost.DefaultContent>

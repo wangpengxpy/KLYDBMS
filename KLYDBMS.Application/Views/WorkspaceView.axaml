@@ -42,15 +42,6 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
-		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader PathIcon.minus-on">
-			<Setter Property="Theme" Value="{x:Null}"/>
-			<Setter Property="IsVisible" Value="False"/>
-			<Setter Property="Cursor" Value="Hand" />
-			<Setter Property="BorderThickness" Value="0" />
-			<Setter Property="BorderBrush" Value="White" />
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="Background" Value="Transparent"/>
-		</Style>
 		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader:checked PathIcon.minus-on">
 			<Setter Property="Theme" Value="{x:Null}"/>
 			<Setter Property="IsVisible" Value="True"/>
@@ -60,13 +51,12 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
-
 		<Style Selector="Expander:up /template/ ToggleButton#ExpanderHeader">
 			<Setter Property="Theme" Value="{x:Null}" />
 			<Setter Property="BorderThickness" Value="0" />
 			<Setter Property="BorderBrush" Value="White" />
-			<Setter Property="Foreground" Value="White"></Setter>
-			<Setter Property="Background" Value="Transparent"></Setter>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
 		</Style>
 		<Style Selector="Expander:down /template/ ToggleButton#ExpanderHeader">
 			<Setter Property="Theme" Value="{x:Null}" />
@@ -74,6 +64,7 @@
 			<Setter Property="BorderBrush" Value="White" />
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="CornerRadius" Value="0"/>
 		</Style>
 
 		<!--ListBox单个Item背景样式-->
@@ -129,15 +120,15 @@
 							CornerRadius="0">
 						<Grid RowDefinitions="60,*">
 							<Border BorderBrush="WhiteSmoke" BorderThickness="0,0,0,1">
-								<Grid>
+								<Grid HorizontalAlignment="Left">
 									<WrapPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
-										<Image Source="{Binding Code,Converter={StaticResource ManagerTypeToImageConverter}}"  Height="20" Stretch="Uniform"/>
+										<Image Margin="10" Source="{Binding Code,Converter={StaticResource ManagerTypeToImageConverter}}"  Height="20" Stretch="Uniform"/>
 										<TextBlock Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{TemplateBinding Header}" Foreground="White"/>
 									</WrapPanel>
 									<Path VerticalAlignment="Center" HorizontalAlignment="Right" Stretch="Uniform" Width="20" Height="20"></Path>
 								</Grid>
 							</Border>
-							<ToggleButton Background="Transparent" BorderThickness="0" Name="ExpanderHeader"
+							<ToggleButton Name="ExpanderHeader"
 											IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
 											HorizontalAlignment="Right" VerticalAlignment="Center">
 								<Panel>
@@ -181,7 +172,10 @@
 												<Grid Width="{Binding $parent[ListBox].Width}">
 													<StackPanel>
 														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" FontSize="16" Text="{Binding Id}"></TextBlock>
-														<TextBlock Cursor="Hand" FontFamily="SimSun" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
+														<WrapPanel>
+															<Image HorizontalAlignment="Left" Margin="60,0,0,0" Width="20" Height="20" Source="avares://KLYDBMS.Application/Assets/child-menu.png"/>
+															<TextBlock Margin="10,0,0,0" Cursor="Hand" FontFamily="SimSun" Foreground="White" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
+														</WrapPanel>
 													</StackPanel>
 												</Grid>
 											</Border>

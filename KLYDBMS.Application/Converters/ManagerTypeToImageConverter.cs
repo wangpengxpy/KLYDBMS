@@ -15,10 +15,10 @@ namespace KLYDBMS.Application.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+
             if (value is string)
             {
-                var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-
                 var uri = new Uri((string)value, UriKind.RelativeOrAbsolute);
                 var scheme = uri.IsAbsoluteUri ? uri.Scheme : "file";
 
@@ -32,7 +32,7 @@ namespace KLYDBMS.Application.Converters
                 }
             }
 
-            throw new NotSupportedException();
+            return new Bitmap(AssetLoader.Open(new Uri((string)$"avares://{assemblyName}/{ASSETS_RESOURCE}/child-menu.png")));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -10,22 +10,21 @@
 		xmlns:views="clr-namespace:KLYDBMS.Application.Views;assembly=KLYDBMS.Application"
 		x:Class="KLYDBMS.Application.Views.LoginView"
 	    x:DataType="vm:LoginViewModel">
-
-	<DockPanel Background="#CF7E06">
-		<Border Width="700" Height="450" BorderThickness="0"  DockPanel.Dock="Left">
-			<Image Source="/Assets/login-background.png"></Image>
-		</Border>
-		<Border Background="White" CornerRadius="4" Width="400" Height="300">
-			<Grid HorizontalAlignment="Center" VerticalAlignment="Center" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,6,*" Width="246">
+	<UserControl.Background>
+		<ImageBrush Stretch="Fill" Source="/Assets/login-background.png"/>
+	</UserControl.Background>
+	<DockPanel>
+		<Border DockPanel.Dock="Right" Margin="400,0,0,0" Background="White" CornerRadius="4" Width="400" Height="300">
+			<Grid HorizontalAlignment="Center"  VerticalAlignment="Center" RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,6,*" Width="246">
 				<Label VerticalAlignment="Center" Margin="20,3,0,20" FontWeight="Bold" FontSize="25" Grid.Row="0" Grid.Column="3" FontFamily="SimSun">统一存储平台</Label>
-				<i:Icon Value="mdi-account" Grid.Row="1" Margin="0,3,0,20" Foreground="#CF7E06" FontSize="30"/>
+				<i:Icon Value="mdi-account" Grid.Row="1" Margin="0,3,0,20" Foreground="#FD5E1D" FontSize="30"/>
 				<Label VerticalAlignment="Center" Margin="6,3,0,20" Grid.Row="1" Grid.Column="0"></Label>
 				<TextBox BorderBrush="#CF7E06" VerticalAlignment="Center" Margin="0,3,6,20" Grid.Row="1" Grid.Column="2" FontFamily="SimSun" Watermark="请输入账号"  Text="{Binding UserName}" ></TextBox>
-				<i:Icon Value="mdi-account-lock" Grid.Row="2" Margin="0,3,0,20" Foreground="#CF7E06" FontSize="30"/>
-				<TextBox BorderBrush="#CF7E06" VerticalAlignment="Center" Margin="0,3,6,20" PasswordChar="*" Grid.Row="2" Grid.Column="2" FontFamily="SimSun" Watermark="请输入密码" Text="{Binding Password}"/>
+				<i:Icon Value="mdi-account-lock" Grid.Row="2" Margin="0,3,0,20" Foreground="#FD5E1D" FontSize="30"/>
+				<TextBox BorderBrush="#FD5E1D" VerticalAlignment="Center" Margin="0,3,6,20" PasswordChar="*" Grid.Row="2" Grid.Column="2" FontFamily="SimSun" Watermark="请输入密码" Text="{Binding Password}"/>
 				<StackPanel Grid.Column="0" Grid.Row="4"  Grid.ColumnSpan="3"  Spacing="5" VerticalAlignment="Top"  HorizontalAlignment="Center">
 					<TextBlock Foreground="Red" Text="{Binding LoginFailedMsg}" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="{Binding LoginFailedMsg, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-					<Button FontWeight="ExtraBold" FontFamily="SimSun" Background="#CF7E06" Foreground="White" Width="250" Height="35" FontSize="20" CornerRadius="20"  Command="{Binding Login}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
+					<Button FontWeight="ExtraBold" FontFamily="SimSun" Background="#FD5E1D" Foreground="White" Width="250" Height="35" FontSize="20" CornerRadius="20"  Command="{Binding Login}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand">
 						登录
 						<Button.IsEnabled>
 							<MultiBinding Converter="{x:Static BoolConverters.And}">

@@ -17,13 +17,16 @@
 		<converter:ManagerTypeToImageConverter x:Key="ManagerTypeToImageConverter"/>
 	</UserControl.Resources>
 	<UserControl.Styles>
-		<!--菜单栏Expander ToggleButton按钮ICON样式-->
+		<!--菜单栏Expander ToggleButton按钮切换ICON样式-->
 		<Style>
 			<Style.Resources>
+				<!--ICON收缩-->
 				<StreamGeometry x:Key="minus">M19,13H5V11H19V13Z</StreamGeometry>
+				<!--ICON扩张-->
 				<StreamGeometry x:Key="plus">M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z</StreamGeometry>
 			</Style.Resources>
-		</Style>
+		</Style>	
+		<!--菜单栏Expander ToggleButton默认显示展开样式-->
 		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader PathIcon.plus-on">
 			<Setter Property="IsVisible" Value="True"/>
 			<Setter Property="Theme" Value="{x:Null}"/>
@@ -33,6 +36,7 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
+		<!--菜单栏Expander ToggleButton切换收缩隐藏展开样式-->
 		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader:checked PathIcon.plus-on">
 			<Setter Property="Theme" Value="{x:Null}"/>
 			<Setter Property="IsVisible" Value="False"/>
@@ -42,6 +46,17 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
+		<!--菜单栏Expander ToggleButton默认隐藏收缩样式-->
+		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader PathIcon.minus-on">
+			<Setter Property="Theme" Value="{x:Null}"/>
+			<Setter Property="IsVisible" Value="False"/>
+			<Setter Property="Cursor" Value="Hand" />
+			<Setter Property="BorderThickness" Value="0" />
+			<Setter Property="BorderBrush" Value="White" />
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="Background" Value="Transparent"/>
+		</Style>
+		<!--菜单栏Expander ToggleButton切换为收缩样式-->
 		<Style Selector="Expander /template/ ToggleButton#ExpanderHeader:checked PathIcon.minus-on">
 			<Setter Property="Theme" Value="{x:Null}"/>
 			<Setter Property="IsVisible" Value="True"/>
@@ -51,6 +66,7 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
+		<!--菜单栏Expander ToggleButton收缩覆写样式-->
 		<Style Selector="Expander:up /template/ ToggleButton#ExpanderHeader">
 			<Setter Property="Theme" Value="{x:Null}" />
 			<Setter Property="BorderThickness" Value="0" />
@@ -58,13 +74,13 @@
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
 		</Style>
+		<!--菜单栏Expander ToggleButton展开覆写样式-->
 		<Style Selector="Expander:down /template/ ToggleButton#ExpanderHeader">
 			<Setter Property="Theme" Value="{x:Null}" />
 			<Setter Property="BorderThickness" Value="0" />
 			<Setter Property="BorderBrush" Value="White" />
 			<Setter Property="Foreground" Value="White"/>
 			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="CornerRadius" Value="0"/>
 		</Style>
 
 		<!--ListBox单个Item背景样式-->
@@ -73,8 +89,8 @@
 		</Style>
 		<!--ListBoxItem背景样式-->
 		<Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
-			<Setter Property="Background" Value="#CF7E06"/>
-			<Setter Property="Foreground" Value="#CF7E06"/>
+			<Setter Property="Background" Value="#FD5E1D"/>
+			<Setter Property="Foreground" Value="#FD5E1D"/>
 		</Style>
 		<!--ListBoxItem鼠标selected的颜色-->
 		<Style Selector="ListBoxItem:selected/template/ ContentPresenter#PART_ContentPresenter">
@@ -83,8 +99,8 @@
 		</Style>
 		<!--ListBoxItem鼠标pressed的颜色-->
 		<Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
-			<Setter Property="Background" Value="#CF7E06" />
-			<Setter Property="Foreground" Value="#CF7E06" />
+			<Setter Property="Background" Value="#FD5E1D" />
+			<Setter Property="Foreground" Value="#FD5E1D" />
 		</Style>
 		<!--菜单栏ListBox的模板样式-->
 		<Style Selector="ListBoxItem">
@@ -114,7 +130,7 @@
 			</Setter>
 			<Setter Property="Template">
 				<ControlTemplate>
-					<Border Background="#CF7E06"
+					<Border Background="#FD5E1D"
 							BorderBrush="#C8990C"
 							BorderThickness="0"
 							CornerRadius="0">
@@ -128,11 +144,12 @@
 									<Path VerticalAlignment="Center" HorizontalAlignment="Right" Stretch="Uniform" Width="20" Height="20"></Path>
 								</Grid>
 							</Border>
-							<ToggleButton Name="ExpanderHeader"
+							<ToggleButton Name="ExpanderHeader" 
 											IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
-											HorizontalAlignment="Right" VerticalAlignment="Center">
+											HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center">
 								<Panel>
-									<PathIcon Classes="minus-on"
+									<PathIcon 					    
+											  Classes="minus-on"
 											  Data="{StaticResource minus}" />
 									<PathIcon Classes="plus-on"
 											  Data="{StaticResource plus}" />
@@ -157,7 +174,7 @@
 	<StackPanel Orientation="Vertical">
 		<DockPanel>
 			<Border DockPanel.Dock="Left" Width="300" Height="600" BorderThickness="0">
-				<ListBox SelectionMode="Single" Width="260" Name="ParentMenu" Background="#BB7205" ItemsSource="{Binding Items}" Grid.Row="1"
+				<ListBox SelectionMode="Single" Width="260" Name="ParentMenu" Background="#FD5E1D" ItemsSource="{Binding Items}" Grid.Row="1"
 				 BorderBrush="Transparent" BorderThickness="0"
 				 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 				 ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -165,7 +182,7 @@
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="model:UserMenuModel">
 							<Expander FontFamily="Microsoft Yahei" FontSize="16" Header="{Binding Name}" BorderThickness="0" Padding="0" Width="{Binding $parent[ListBox].Width}">
-								<ListBox SelectionMode="Single" Name="ChildMenu" Width="{Binding $parent[ListBox].Width}" BorderBrush="#CF7E06" Background="#CF7E06" BorderThickness="0" ItemsSource="{Binding Children}">
+								<ListBox SelectionMode="Single" Name="ChildMenu" Width="{Binding $parent[ListBox].Width}" BorderBrush="#E4551A" Background="#E4551A" BorderThickness="0" ItemsSource="{Binding Children}">
 									<ListBox.ItemTemplate>
 										<DataTemplate DataType="model:UserMenuModel">
 											<Border BorderThickness="0,0,0,0" Padding="0">

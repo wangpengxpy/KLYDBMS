@@ -26,9 +26,13 @@
 	<ItemGroup>
 		<None Remove="Assets\child-menu.png" />
 		<None Remove="Assets\login-background.png" />
+		<None Remove="Assets\logo.ico" />
+		<None Remove="Assets\logo.png" />
 		<None Remove="Assets\material-manage.png" />
 		<None Remove="Assets\menu-manage.png" />
 		<None Remove="Assets\role-manage.png" />
+		<None Remove="Assets\source.png" />
+		<None Remove="Assets\uninstallerIcon.png" />
 		<None Remove="Assets\user-manage.png" />
 	</ItemGroup>
 

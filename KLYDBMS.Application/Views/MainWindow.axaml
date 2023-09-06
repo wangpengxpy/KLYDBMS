@@ -11,7 +11,7 @@
 		xmlns:vm="clr-namespace:KLYDBMS.Application.Core.ViewModels;assembly=KLYDBMS.Application.Core"
 		xmlns:views="clr-namespace:KLYDBMS.Application.Views;assembly=KLYDBMS.Application"
 		x:Class="KLYDBMS.Application.Views.MainWindow"
-        Icon="/Assets/ybb-logo.ico"
+        Icon="/Assets/logo.ico"
         Title="统一存储平台">
 
 	<rxui:RoutedViewHost Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static local:Transitions.Fade}">

@@ -19,7 +19,7 @@
 				<Label VerticalAlignment="Center" Margin="20,3,0,20" FontWeight="Bold" FontSize="25" Grid.Row="0" Grid.Column="3" FontFamily="SimSun">统一存储平台</Label>
 				<i:Icon Value="mdi-account" Grid.Row="1" Margin="0,3,0,20" Foreground="#FD5E1D" FontSize="30"/>
 				<Label VerticalAlignment="Center" Margin="6,3,0,20" Grid.Row="1" Grid.Column="0"></Label>
-				<TextBox BorderBrush="#CF7E06" VerticalAlignment="Center" Margin="0,3,6,20" Grid.Row="1" Grid.Column="2" FontFamily="SimSun" Watermark="请输入账号"  Text="{Binding UserName}" ></TextBox>
+				<TextBox BorderBrush="#FD5E1D" VerticalAlignment="Center" Margin="0,3,6,20" Grid.Row="1" Grid.Column="2" FontFamily="SimSun" Watermark="请输入账号"  Text="{Binding UserName}" ></TextBox>
 				<i:Icon Value="mdi-account-lock" Grid.Row="2" Margin="0,3,0,20" Foreground="#FD5E1D" FontSize="30"/>
 				<TextBox BorderBrush="#FD5E1D" VerticalAlignment="Center" Margin="0,3,6,20" PasswordChar="*" Grid.Row="2" Grid.Column="2" FontFamily="SimSun" Watermark="请输入密码" Text="{Binding Password}"/>
 				<StackPanel Grid.Column="0" Grid.Row="4"  Grid.ColumnSpan="3"  Spacing="5" VerticalAlignment="Top"  HorizontalAlignment="Center">

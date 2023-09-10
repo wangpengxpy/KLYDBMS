@@ -22,6 +22,7 @@
 	<ItemGroup>
 	  <Folder Include="Models\Materials\" />
 	  <Folder Include="Models\SysLogs\" />
+	  <Folder Include="Services\Roles\" />
 	</ItemGroup>
 
 </Project>

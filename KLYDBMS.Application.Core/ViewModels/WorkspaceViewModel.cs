@@ -1,4 +1,6 @@
-﻿using KLYDBMS.Models;
+﻿using DynamicData.Binding;
+using KLYDBMS.Application.Core.ViewModels.Users;
+using KLYDBMS.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Splat;
@@ -11,6 +13,7 @@ namespace KLYDBMS.Application.Core.ViewModels
     public class WorkspaceViewModel : ViewModelBase, IScreen, IRoutableViewModel
     {
         private readonly IMUserService _mUserService;
+
         [Reactive]
         public ReactiveCommand<Unit, Unit> Logout { get; set; }
 
@@ -22,10 +25,12 @@ namespace KLYDBMS.Application.Core.ViewModels
 
         public ObservableCollection<UserMenuModel> Items { get; } = new();
 
+        [Reactive]
+        public UserMenuModel SelectedMenu { get; set; }
+
         public WorkspaceViewModel(IScreen hostScreen) :
           this(hostScreen, Locator.Current.GetService<IMUserService>())
         {
-
         }
 
         public WorkspaceViewModel(IScreen screen, IMUserService mUserService)
@@ -33,6 +38,14 @@ namespace KLYDBMS.Application.Core.ViewModels
             HostScreen = screen;
 
             Logout = ReactiveCommand.Create(() => { HostScreen.Router.NavigateAndReset.Execute(new LoginViewModel(HostScreen)); });
+
+            this.WhenPropertyChanged(d => d.SelectedMenu).Subscribe(s =>
+            {
+                if (s != null && s.Value != null)
+                {
+                    Router.Navigate.Execute(new UsersViewModel(HostScreen, SelectedMenu, mUserService));
+                }  
+            });
 
             _mUserService = mUserService;
 

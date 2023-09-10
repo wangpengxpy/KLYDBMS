@@ -17,6 +17,7 @@
 		<FileVersion>1.0.0</FileVersion>
 		<Product>KLYDBMS.Application</Product>
 		<Copyright>Anonymous.FreezeBeautiful.20151106</Copyright>
+		<ApplicationIcon>Assets\logo.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,6 +38,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Content Include="Assets\logo.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
 		<PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
 		<PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
@@ -52,6 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Views\Materials\MaterialsView.axaml.cs">
+		  <DependentUpon>MaterialsView.axaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Menus\MenusView.axaml.cs">
+		  <DependentUpon>MenusView.axaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Roles\RolesView.axaml.cs">
+		  <DependentUpon>RolesView.axaml</DependentUpon>
+		</Compile>
 		<Compile Update="Views\WorkspaceView.axaml.cs">
 			<DependentUpon>WorkspaceView.axaml</DependentUpon>
 		</Compile>

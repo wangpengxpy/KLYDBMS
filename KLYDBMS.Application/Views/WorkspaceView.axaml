@@ -174,7 +174,7 @@
 	<StackPanel Orientation="Vertical">
 		<DockPanel>
 			<Border DockPanel.Dock="Left" Width="300" Height="600" BorderThickness="0">
-				<ListBox SelectionMode="Single" Width="260" Name="ParentMenu" Background="#FD5E1D" ItemsSource="{Binding Items}" Grid.Row="1"
+				<ListBox  SelectionMode="Single" Width="260" Background="#FD5E1D" ItemsSource="{Binding Items}" Grid.Row="1"
 				 BorderBrush="Transparent" BorderThickness="0"
 				 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 				 ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -182,16 +182,16 @@
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="model:UserMenuModel">
 							<Expander FontFamily="Microsoft Yahei" FontSize="16" Header="{Binding Name}" BorderThickness="0" Padding="0" Width="{Binding $parent[ListBox].Width}">
-								<ListBox SelectionMode="Single" Name="ChildMenu" Width="{Binding $parent[ListBox].Width}" BorderBrush="#E4551A" Background="#E4551A" BorderThickness="0" ItemsSource="{Binding Children}">
+								<ListBox Name="MenuListBox" SelectionChanged="Menu_SelectionChanged"  SelectionMode="Single" Width="{Binding $parent[ListBox].Width}" BorderBrush="#E4551A" Background="#E4551A" BorderThickness="0" ItemsSource="{Binding Children}">
 									<ListBox.ItemTemplate>
 										<DataTemplate DataType="model:UserMenuModel">
 											<Border BorderThickness="0,0,0,0" Padding="0">
 												<Grid Width="{Binding $parent[ListBox].Width}">
 													<StackPanel>
-														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" FontSize="16" Text="{Binding Id}"></TextBlock>
+														<TextBlock Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" FontSize="16" Text="{Binding Id}"/>
 														<WrapPanel>
 															<Image HorizontalAlignment="Left" Margin="60,0,0,0" Width="20" Height="20" Source="avares://KLYDBMS.Application/Assets/child-menu.png"/>
-															<TextBlock Margin="10,0,0,0" Cursor="Hand" FontFamily="SimSun" Foreground="White" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"></TextBlock>
+															<TextBlock Margin="10,0,0,0" Cursor="Hand" FontFamily="SimSun" Foreground="White" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"/>
 														</WrapPanel>
 													</StackPanel>
 												</Grid>
@@ -209,7 +209,7 @@
 					<rxui:RoutedViewHost.DefaultContent>
 						<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
 							<ProgressBar Foreground="OrangeRed" Background="Orange" IsIndeterminate="True" IsVisible="True"/>
-							<TextBlock Text="HelloWorld"></TextBlock>
+							<TextBlock Text="HelloWorld"/>
 						</StackPanel>
 					</rxui:RoutedViewHost.DefaultContent>
 				</rxui:RoutedViewHost>

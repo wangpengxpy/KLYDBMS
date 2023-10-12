@@ -3,6 +3,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="KLYDBMS.Application.Views.Users.UsersView">
-  Welcome to Avalonia!
+             x:Class="KLYDBMS.Application.Views.Users.UsersView"
+			 xmlns:views="clr-namespace:KLYDBMS.Application.Views.Users;assembly=KLYDBMS.Application"
+			 xmlns:vm="clr-namespace:KLYDBMS.Application.Core.ViewModels.Users;assembly=KLYDBMS.Application.Core"
+			 xmlns:model="clr-namespace:KLYDBMS.Models;assembly=KLYDBMS.Application.Core">
+
+	<StackPanel>
+		<DataGrid Name="UsersDataGrid" SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding Items}" AreRowDetailsFrozen="True" BorderThickness="0" BorderBrush="#FD5E1D"  CanUserSortColumns="False"  CanUserResizeColumns="True" GridLinesVisibility="Horizontal" VerticalScrollBarVisibility="Hidden">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Id"
+								Binding="{Binding Id}"
+								Width="Auto" IsReadOnly="True" />
+				<DataGridTextColumn Header="账号"
+                                   Binding="{Binding UserName}"
+                                   Width="Auto" IsReadOnly="True" />
+				<DataGridTextColumn Header="备注"
+                                    Binding="{Binding Remark}"
+                                    Width="Auto" IsReadOnly="True" />
+				<DataGridTextColumn Header="创建时间"
+                                    Binding="{Binding CreatedTime}"
+                                    Width="Auto" IsReadOnly="True" />
+				<DataGridTemplateColumn Header="操作" Width="*">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<WrapPanel Orientation="Horizontal" HorizontalAlignment="Right">
+								<StackPanel Orientation="Horizontal">
+									<ToggleSwitch IsChecked="{Binding LockEnabled}" Margin="10"/>
+									<Button Content="编辑" Command="{Binding $parent[DataGrid].DataContext.EditUser}" />
+								</StackPanel>
+							</WrapPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</StackPanel>
 </UserControl>

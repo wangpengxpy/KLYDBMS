@@ -96,5 +96,19 @@ namespace KLYDBMS.Application.Core
 
             return OperateResult.Successed(user.Id);
         }
+
+        public async Task<IEnumerable<UserListModel>> GetUserList()
+        {
+            var users = await _context.MUsers.AsNoTracking().ToListAsync();
+
+            return users.Select(d => new UserListModel() 
+            {
+                Id = d.Id,
+                UserName = d.UserName,
+                LockEnabled = d.LockEnabled,
+                Remark = d.Remark,
+                CreatedTime = d.CreatedTime
+            });
+        }
     }
 }

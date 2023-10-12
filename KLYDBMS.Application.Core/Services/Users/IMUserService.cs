@@ -17,5 +17,10 @@ namespace KLYDBMS.Application.Core
         /// <param name="id"></param>
         /// <returns></returns>
         Task<OperateResult<List<UserMenuModel>>> GetUserMenus(int id);
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<UserListModel>> GetUserList();
     }
 }

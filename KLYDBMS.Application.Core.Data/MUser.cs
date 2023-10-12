@@ -31,8 +31,5 @@ namespace KLYDBMS.Application.Core.Data
         [Column("CreatedTime", TypeName = "datetime")]
         [Required]
         public DateTime CreatedTime { get; set; }
-        [Column("DeletedTime", TypeName = "datetime")]
-        [Required]
-        public DateTime DeletedTime { get; set; }
     }
 }

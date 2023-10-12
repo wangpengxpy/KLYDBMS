@@ -204,12 +204,11 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</Border>
-			<Border DockPanel.Dock="Right" Width="500" Height="450" BorderThickness="0">
+			<Border DockPanel.Dock="Right">
 				<rxui:RoutedViewHost Name="WorkspaceRoutedViewHost" Grid.Row="0" Router="{Binding Router}" PageTransition="{x:Static animation:Transitions.Fade}">
 					<rxui:RoutedViewHost.DefaultContent>
 						<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
 							<ProgressBar Foreground="OrangeRed" Background="Orange" IsIndeterminate="True" IsVisible="True"/>
-							<TextBlock Text="HelloWorld"/>
 						</StackPanel>
 					</rxui:RoutedViewHost.DefaultContent>
 				</rxui:RoutedViewHost>
